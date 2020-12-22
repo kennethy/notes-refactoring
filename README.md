@@ -2,7 +2,27 @@
 
 My study notes from reading [Refactoring: Improving the Design of Existing Code, Fowler](https://www.amazon.ca/Refactoring-Improving-Design-Existing-Code/dp/0134757599/ref=sr_1_1?dchild=1&keywords=martin+fowler&qid=1608616449&sr=8-1)
 
+# Chapter 3 - Bad Smells in Code
 
+**1. Mysterious Name**
+
+Confusing names for functions, modules, variables, and classes. Ensure they clearly communicate what they do and how to use them.
+
+**2. Duplicated Code**
+
+Same code structure in more than one place. It requires updates in multiple places, and may require careful reading if there's small difference. Avoid by extracting similar structure to designated functions.
+
+**3. Long Function**
+
+Long function that takes in many parameters, have many temporary variables, have many loops/conditions, or does too much. Keep function short and it should have only one responsibility.
+
+**4. Long Parameter List**
+
+Passing too many parameters. Avoid parameter derivable from another. Avoid flags. May introduce paramter object or class that groups the parameters.
+
+**5. Global Data**
+
+Global data which could be modified anywhere.
 
 # Tips
 
