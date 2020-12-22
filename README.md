@@ -1,4 +1,4 @@
-# Refactoring - Fowler
+# Refactoring - Fowler (WIP)
 
 My study notes from reading [Refactoring: Improving the Design of Existing Code, Fowler](https://www.amazon.ca/Refactoring-Improving-Design-Existing-Code/dp/0134757599/ref=sr_1_1?dchild=1&keywords=martin+fowler&qid=1608616449&sr=8-1)
 
