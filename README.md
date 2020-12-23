@@ -18,11 +18,31 @@ Long function that takes in many parameters, have many temporary variables, have
 
 **4. Long Parameter List**
 
-Passing too many parameters. Avoid parameter derivable from another. Avoid flags. May introduce paramter object or class that groups the parameters.
+Passing too many parameters. Avoid parameter derivable from another. Avoid flags. May introduce parameter object or class that groups the parameters.
 
 **5. Global Data**
 
-Global data which could be modified anywhere.
+Global data that could be modified anywhere in the codebase. Use getter/setter to control access. Try to keep them immutable.
+
+**6. Mutable Data**
+
+Data is updated, not realizing another part of the software expects it to be something different. Risk increases when its scope grows.
+
+**7. Divergent Change**
+
+When a module is often changed in different ways for different reasons. It may be a sign that the module is responsible for too many things, and may want to split the processing that it involves in.
+
+**8. Shotgun Surgery**
+
+Multiple small edits in different classes needed when making a change. Changes are all over the place.
+
+**9. Feature Envy**
+
+When a function in one module spends more time communicating with functions or data inside another module than it does within its own module.
+
+**10. Data Clumps**
+
+When three or four data items are used together in multiple places, either as class fields or function parameters. If deleting one of data value would make the rest meaningful, it could be a sign to make a class to group the data.
 
 # Tips
 
