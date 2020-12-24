@@ -100,6 +100,38 @@ When subclass inherits all the data and methods that it may not need. It's a muc
 
 Comments used as deodorant.
 
+# Chapter 6 - A First Set of Refactorings
+
+## 1. Extract Function
+
+**Motivation**: Separation between intention and implementation. Extract the "how" into a function and name the function after the "what".
+
+```js
+function printOwing(invoice) {
+    printBanner();
+    let oustanding = calculateOutstanding();
+
+    // print details
+    console.log(`name: ${invoice.customer}`);
+    console.log(`amount: ${oustanding}`);
+}
+```
+
+to
+
+```js
+function printOwing(invoice) {
+    printBanner();
+    let oustanding = calculateOutstanding();
+    printDetails(outstanding);
+
+    function printDetails(outstanding) {
+        console.log(`name: ${invoice.customer}`);
+        console.log(`amount: ${oustanding}`);
+    }
+}
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
