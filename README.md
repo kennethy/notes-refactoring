@@ -183,6 +183,17 @@ return basePrice > 500;
 return anOrder.basePrice > 1000;
 ```
 
+## Change Function Declaration
+
+**Motivation:** Rename function name to better convey the intention.
+
+```js
+// from
+function circum(radius) { ... }
+
+// to
+function circumference(radius) { ... }
+```
 
 # Tips
 
