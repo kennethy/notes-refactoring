@@ -113,6 +113,11 @@ Comments used as deodorant.
 9. When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous. (page 84)
 10. Make sure all tests are fully automatic and that they check their own results. (page 86)
 11. A suite of tests is a powerful bug detector that decapitates the time it takes to find bugs. (page 86)
-12. Always make sure a test will fail when it should. (page 91)
-13. When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous. (page 84)
+12. When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous. (page 84)
+13. Always make sure a test will fail when it should. (page 91)
+14. Run tests frequently. Run those exercising the code you'reworking on at least few minutes; run all tests at least daily. (page 92)
+15. It is better to write and run incomplete tests than not to run complete tests. (page 93)
+16. Think of the boundary conditions under which things might go wrong and concentrate your tests there. (page 97)
+17. Don't let the fear that testing can't catch all bugs stop you from writing tests that catch most bugs. (page 98)
+18. When you get a bug report, start by writing a unit test that exposes the bug. (page 99)
 
