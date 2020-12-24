@@ -102,11 +102,12 @@ Comments used as deodorant.
 
 # Chapter 6 - A First Set of Refactorings
 
-## 1. Extract Function
+## Extract Function
 
-**Motivation**: Separation between intention and implementation. Extract the "how" into a function and name the function after the "what".
+**Motivation:** Separation between intention and implementation. Extract the "how" into a function and name the function after the "what".
 
 ```js
+// from
 function printOwing(invoice) {
     printBanner();
     let oustanding = calculateOutstanding();
@@ -115,11 +116,8 @@ function printOwing(invoice) {
     console.log(`name: ${invoice.customer}`);
     console.log(`amount: ${oustanding}`);
 }
-```
 
-to
-
-```js
+// to
 function printOwing(invoice) {
     printBanner();
     let oustanding = calculateOutstanding();
@@ -131,6 +129,60 @@ function printOwing(invoice) {
     }
 }
 ```
+## Inline Function
+
+**Motivation:** When the body is as clear as the intention, just use the implementation body directly.
+
+```js
+// from
+function getRating(driver) {
+    return moreThanFiveLateDeliveries(driver) ? 2 : 1;
+}
+
+function moreThanFiveLateDeliveries(driver) {
+    return driver.numberOfLateDeliveries > 5;
+}
+
+// to
+function getRating() {
+    return (driver.numberOfLateDeliveries > 5) ? 2 : 1;
+}
+```
+
+## Extract Variable
+
+**Motivation:** Use local variables to break down long and complex expressions.
+
+```js
+// from
+function calculation () {
+    return order.quantity * order.itemPrice -
+        Math.max(0, order.quantity - 500) * order.itemPrice * 0.05 +
+        Math.min(order.quantity * order.itemPrice * 0.1, 100);
+}
+
+// to
+function calculation() {
+    const basePrice = order.quantity * order.itemPrice;
+    const quantityDiscount = Math.max(0, order.quantity - 500) * order.itemPrice * 0.05;
+    const shipping = Math.min(basePrice * 0.1, 100);
+    return basePrice - quantityDiscount + shipping;
+}
+```
+
+## Inline Variable
+
+**Motivation:** When the expression is as meaningful as its variable name, just use the expression directly.
+
+```js
+// from
+let basePrice = anOrder.basePrice;
+return basePrice > 500;
+
+// to
+return anOrder.basePrice > 1000;
+```
+
 
 # Tips
 
