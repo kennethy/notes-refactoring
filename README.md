@@ -42,7 +42,63 @@ When a function in one module spends more time communicating with functions or d
 
 **10. Data Clumps**
 
-When three or four data items are used together in multiple places, either as class fields or function parameters. If deleting one of data value would make the rest meaningful, it could be a sign to make a class to group the data.
+When three or four data items are used together in multiple places, either as class fields or function parameters. If deleting one of data value would make the rest meaningless, it could be a sign to make a class to group the data.
+
+**11. Primitive Obsession**
+
+Using primitive data types when it's more appropriate to create fundamental types appropraite to the domain space.
+
+**12. Repeated Switches**
+
+The same conditional switching logic pops up in different places. Use polymorphism to help alleviate this.
+
+**13. Loops**
+
+With the support of first-class functions, use pipeline operations (such as filter, reduce, and map) to replace loops
+
+**14. Lazy Element**
+
+Using elements that are expected to grow but never do so. Should just get rid of them.
+
+**15. Speculative Generality**
+
+Adding all sorts of hooks in advance when they will not be used.
+
+**16. Temporary Field**
+
+A class field that is set only in certain circumstances.
+
+**17. Message Chains**
+
+When a client asks one object for another object, and so on.
+
+**18. Middle Man**
+
+When client talks to a class that delegates most of its methods to another class.
+
+**19. Inside Trading**
+
+When exceptions are made to allow classes to talk to each other when they ideally should not.
+
+**20. Large Class**
+
+When a class does too much and have too many fields.
+
+**21. Alternative Classes with Different Interfaces**
+
+When interface is different for similar classes. Should keep the interface the same to support substituion.
+
+**22. Data Class**
+
+When data holders are being manipulated in far too much detail by other classes. 
+
+**23. Refused Request**
+
+When subclass inherits all the data and methods that it may not need. It's a much stronger smell when subclass is reusing behaviour but does not want to support the interface of the superclass.
+
+**24. Comments**
+
+Comments used as deodorant.
 
 # Tips
 
@@ -58,5 +114,5 @@ When three or four data items are used together in multiple places, either as cl
 10. Make sure all tests are fully automatic and that they check their own results. (page 86)
 11. A suite of tests is a powerful bug detector that decapitates the time it takes to find bugs. (page 86)
 12. Always make sure a test will fail when it should. (page 91)
-
+13. When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous. (page 84)
 
