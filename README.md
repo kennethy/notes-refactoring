@@ -218,9 +218,24 @@ export function setDefaultOwner(arg) {  defaultOwnerData = arg; }
 let a = height * width;
 
 // to
-let aera = height * width;
+let area = height * width;
 ```
 
+## Introduce Parameter Object
+
+**Motivation:** Replace a data clump with a single data structure.
+
+```js
+// from
+function amountInvoiced(startDate, endDate) { ... }
+function amountReceived(startDate, endDate) { ... }
+function amountOverdue(startDate, endDate) { ... }
+
+// to
+function amountInvoiced(aDateRange) { ... }
+function amountReceived(aDateRange) { ... }
+function amountOverdue(aDateRange) { ... }
+```
 
 
 # Tips
