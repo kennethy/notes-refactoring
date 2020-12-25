@@ -195,6 +195,34 @@ function circum(radius) { ... }
 function circumference(radius) { ... }
 ```
 
+## Encapsulate Variable
+
+**Motivation:** Encapsulate widely accessed data to control access.
+
+```js
+// from
+let defaultOwner = { firstName: 'Martin', lastName: 'Fowler' };
+
+// to
+let defaultOwnerData = { firstName: 'Martin', lastName: 'Fowler' };
+export function defaultOwner() { return defaultOwnerData }
+export function setDefaultOwner(arg) {  defaultOwnerData = arg; }
+```
+
+## Rename Variable
+
+**Motivation:** Naming things well is the heart of clean programming.
+
+```js
+// from
+let a = height * width;
+
+// to
+let aera = height * width;
+```
+
+
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
