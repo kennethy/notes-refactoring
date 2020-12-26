@@ -237,6 +237,41 @@ function amountReceived(aDateRange) { ... }
 function amountOverdue(aDateRange) { ... }
 ```
 
+## Combine Functions into Class
+
+**Motivation:** Group functions that operate closely together into a class. It helps to simplify function calls by removing shared arguments.
+
+```js
+// from
+function base(aReading) { ... }
+function taxableCharge(aReading) { ... }
+function calculateBaseCharge(aReading) { ... }
+
+// to
+class Reading {
+    base() { ... }
+    taxableCharge() { ... }
+    calculateBaseCharge() { ... }
+}
+```
+
+## Combine Functions into Transform
+
+**Motivation:** Reduce duplication and keep derivation logic in a consistent place by using a data transformation function. It takes the source data as input and calculates all the derivations, putting each derived value as a field in the output data. Consider [Combining Functions into Class](#combine-functions-into-class) if fields from data source may be be updated. Derived fields may gone stale when data source is updated.
+
+```js
+// from
+function base(aReading) { ... }
+function taxableCharge(aReading) { ... }
+
+// to
+function enrichReading(argReading) {
+    const aReading = _.cloneDeep(argReading);
+    aReading.baseCharge = base(aReading);
+    aReading.taxableCharge = taxableCharge(aReading);
+
+}
+```
 
 # Tips
 
