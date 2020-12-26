@@ -273,6 +273,62 @@ function enrichReading(argReading) {
 }
 ```
 
+## Split Phase
+
+**Motivation:** Split code that's dealing with different things. Each topic can be updated separately without knowing the details of each other.
+
+```js
+// from
+const orderData = orderString.split(/\s+/);
+const productPrice = priceList[orderDta[0].split('-')[1]];
+const orderPrice = parseInt(orderData[1]) * productPrice;
+
+// to
+const orderRecord = parseOrder(order);
+const orderPrice = price(orderRecord, priceList);
+
+function parseOrder(aString) {
+    const values = aString.split(/\s+/);
+    return ({
+        productID: values[0].split('-')[1],
+        quantity: parseInt(values[1])
+    });
+}
+
+function price(order, priceList) {
+    return order.quantity * priceList[order.productID];
+}
+```
+
+# Chapter 7 - Encapsulation
+
+```
+Perhaps the most important criteria to be used in decomposing modules is to identify secrets that modules should hide from the rest of the system [Parnas]
+```
+
+## Encapsulate Record
+
+**Motivation:** Group closely related fields and functions together. Derived values and stored values are separated when using a simple data record, which could be exposing too much details to the client.
+
+```js
+// from
+organization = {name: 'Acme Gooseberries', country: 'GB'};
+
+// to
+class Organization {
+    constructor(data) {
+        this._name = data.name;
+        this._country = data.country;
+    }
+
+    get name() { return this._name; }
+    set name(arg) { this._name = arg; }
+    get country() { return this._country; }
+    set country(arg) { this._country = arg; }
+}
+```
+
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
