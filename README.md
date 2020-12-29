@@ -442,6 +442,43 @@ class Person {
 }
 ```
 
+## Remove Middle Man
+
+**Motivation:** When there's too much forwarding (via delegating methods) to the delegate, just use the delegate directly.
+
+```js
+// from
+manager = aPerson.manager;
+
+class Person {
+    get manager() { return this.department.manager; }
+}
+
+// to
+manager = aPerson.department.manager;
+```
+
+## Substitute Algorithm
+
+**Motivation:** Do things in a simpler way if it can be done so.
+
+```js
+// from
+function foundPerson(people) {
+    for (let i = 0; i < people.length; i++>) {
+        if (people[i] === 'Don') return 'Don';
+        if (people[i] === 'John') return 'John';
+        if (people[i] === 'Kent') return 'Kent';
+    }
+}
+
+// to
+function foundPerson(people) {
+    const candidates = ['Don', 'John', 'Kent'];
+    return people.find(p => candidates.include(p)) || '';
+}
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
