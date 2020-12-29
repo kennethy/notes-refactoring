@@ -347,6 +347,39 @@ class Person {
 }
 ```
 
+## Replace Primitive with Object
+
+**Motivation:** Use class for data items that need special behaviours.
+
+```js
+// from
+orders.filter(o => "high" === o.priority || "rush" === o.priority);
+
+// to
+orders.filter(o => o.priority.higherThan(new Priority("normal")));
+```
+
+## Replace Temp with Query
+
+**Motivation:** Extract the calculation of a value into a function to avoid duplication.
+
+```js
+// from
+const basePrice = this._quantity * this._itemPrice;
+if (basePrice > 1000)
+    return basePrice * 0.95;
+else
+    return basePrice * 0.98
+
+// to
+get basePrice() { this._quantity * this._itemPrice; }
+
+if (this.basePrice > 1000)
+    return this.basePrice * 0.95
+else
+    return this.basePrice * 0.98;
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
