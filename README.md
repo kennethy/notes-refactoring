@@ -380,6 +380,52 @@ else
     return this.basePrice * 0.98;
 ```
 
+## Extract Class
+
+**Motivation:** Split class when it has too many responsibilities and difficult to understand.
+
+```js
+// from
+class Person {
+    get officeAreaCode() { return this._officeAreCode; }
+    get officeNumber() { retirm this._officeNumber; }
+}
+
+// to
+class Person {
+    get officeAreaCode() { return this._telephoneNumber.areCode; }
+    get officeNumber() { return this._telephoneNumber.number; }
+}
+
+class TelephoneNumber {
+    get areaCode() { return this._areaCode; }
+    get number() { return this._number; }
+}
+```
+
+## Inline Class
+
+**Motivation:** Remove class when it longer has any meaningful responsibilities.
+
+```js
+// from
+class Person {
+    get officeAreaCode() { return this._telephoneNumber.areCode; }
+    get officeNumber() { return this._telephoneNumber.number; }
+}
+
+class TelephoneNumber {
+    get areaCode() { return this._areaCode; }
+    get number() { return this._number; }
+}
+
+// to
+class Person {
+    get officeAreaCode() { return this._officeAreCode; }
+    get officeNumber() { return this._officeNumber; }
+}
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
