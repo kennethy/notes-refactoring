@@ -479,6 +479,25 @@ function foundPerson(people) {
 }
 ```
 
+# Chapter 8 - Moving Features
+
+## Move Function
+
+**Motivation:** Ensure only related software elements are grouped together, and the links between them are easy to find and understand. Consider moving the element when it references elements in other contexts more than the one it currently resides in.
+
+```js
+// from
+class Account {
+    get overdraftCharge() { ... }
+}
+
+// to
+class AccountType {
+    get overdraftCharge() { ... }
+}
+```
+
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
