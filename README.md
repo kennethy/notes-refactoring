@@ -426,6 +426,22 @@ class Person {
 }
 ```
 
+## Hide Delegate
+
+**Motivation:** Encapsulate delegate so minimum changes are needed when its interface change.
+
+```js
+// from
+manager = aPerson.department.manager;
+
+// to
+manager = aPerson.manager;
+
+class Person {
+    get manager() { return this.department.manager; }
+}
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
