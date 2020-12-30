@@ -497,6 +497,23 @@ class AccountType {
 }
 ```
 
+## Move Field
+
+**Motivation:** Move data if it makes more sense for it to be moved.
+
+```js
+// from
+class Customer {
+    get plan() { return this._plan; }
+    get discountRate() { return this._discountRate; }
+}
+
+// to
+class Customer {
+    get plan() { return this._plan; }
+    get discountRate() { return this.plan.discountRate; }
+}
+```
 
 # Tips
 
