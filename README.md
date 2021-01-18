@@ -625,6 +625,26 @@ for (const p of people) {
 averageAge = averageAge / people.length;
 ```
 
+## Replace Loop with Pipeline
+
+**Motivation:** Collection pipelines can better describe the process as a series of operations.
+
+```js
+// from
+const names = [];
+for (const i of input) {
+    if (i.job === 'programmer') {
+        names.push(i.name);
+    }
+}
+
+// to
+const names = input
+    .filter(i => i.job === 'programmer')
+    .map(i => i.name);
+```
+
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
