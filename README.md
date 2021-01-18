@@ -627,7 +627,7 @@ averageAge = averageAge / people.length;
 
 ## Replace Loop with Pipeline
 
-**Motivation:** Collection pipelines can better describe the process as a series of operations.
+**Motivation:** Collection pipelines can better describe the process as a series of operations. 
 
 ```js
 // from
@@ -642,6 +642,20 @@ for (const i of input) {
 const names = input
     .filter(i => i.job === 'programmer')
     .map(i => i.name);
+```
+
+## Remove Dead Code
+
+**Motivation**: Delete unused code. Save time from understanding code that does not matter.
+
+```js
+// from
+if (false) {
+    doSomethingThatUsedToMatter();
+}
+
+// to
+
 ```
 
 
