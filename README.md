@@ -515,6 +515,116 @@ class Customer {
 }
 ```
 
+## Move Statements into Function
+
+**Motivation:** Move statements into a function when they can be better understood when grouped as part of the called function.
+
+```js
+// from
+result.push(`<p>title: ${person.photo.title}</p>`);
+result.concat(photoData(person.photo));
+
+function photoData(aPhoto) {
+    return [
+        `<p>location: ${aPhoto.location}</p>`,
+        `<p>date: ${aPhoto.date.toDateString()}</p>`
+    ];
+}
+
+// to
+result.concat(photoData(person.photo));
+
+function photoData(aPhoto) {
+    return [
+        `<p>title: ${aPhoto.title}</p>`,
+        `<p>location: ${aPhoto.location}</p>`,
+        `<p>date: ${aPhoto.date.toDateString()}</p>`
+    ];
+}
+```
+
+## Move Statements to Callers
+
+**Motivations:** Extract statements when abstraction boundaries shift and unit of behaviour becomes a mix of two or more different things.
+
+```js
+// from
+emitPhotoData(outStream, person.photo);
+
+function emitPhotoData(outStream, photo) {
+    outStream.write(`<p>title: ${photo.title}</p>\n`);
+    outStream.write(`<p>location: ${photo.location}</p>\n`);
+}
+
+// to
+emitPhotoData(outStream, person.photo);
+
+outstream.write(`<p>location: ${person.photo.location}</p>\n`);
+
+function emitPhotoData(outStream, photo) {
+    outStream.write(`<p>title: ${photo.title}</p>\n`);
+}
+```
+
+## Replace Inline Code with Function Call
+
+**Motivation:** Eliminate duplications.
+
+```js
+// from
+let appliesToMass = false;
+for (const s of states) {
+    if (s === 'MA') appliesToMass = true;
+}
+
+// to
+appliesToMass = states.includes('MA');
+```
+
+## Slide Statements
+
+**Motivation:** Code is easier to understand when things that are related to each other appear together.
+
+```js
+// from
+const pricingPlan = retrievePricingPlan();
+const order = retrieveOrder();
+let charge;
+const chargePerUnit = pricingPlan.unit;
+
+// to
+const pricingPlan = retrievePricingPlan();
+const chargePerUnit = pricingPlan.unit;
+const order = retrieveOrder();
+let charge;
+```
+
+## Split Loop
+
+**Motivation:** By splitting the loop, you ensure you only need to understand the behaviour you need to modify.
+
+```js
+// from
+let averageAge = 0;
+let totalSalary = 0;
+for (const p of people) {
+    averageAge += p.age;
+    totalSalary += p.salary;
+}
+
+// to
+let totalSalary = 0;
+for (const p of people) {
+    totalSalary += p.salary;
+}
+
+let averageAge = 0;
+for (const p of people) {
+    averageAge += p.age;
+}
+averageAge = averageAge / people.length;
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
