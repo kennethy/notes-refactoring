@@ -655,9 +655,61 @@ if (false) {
 }
 
 // to
-
 ```
 
+# Chapter 9 - Organizing Data
+
+## Split Variable
+
+**Motivation:** Any variable with more than one responsibility should be replaced with multiple variables, one for each responsibility.
+
+```js
+// from
+let temp = 2 * (height + width);
+console.log(temp);
+temp = height * width;
+console.log(temp);
+
+// to
+const perimeter = 2 * (width + height);
+console.log(perimeter);
+const area = height * width;
+console.log(area);
+```
+
+## Rename Field
+
+**Motivation:** Fields/Setters/Getters should be named clearly to convey what they will do.
+
+```js
+// from
+class Organization {
+    get name() {...}
+}
+
+// to
+class Organization() {
+    get title() {...}
+}
+```
+
+## Replace Derived Variable with Query
+
+**Motivation:** A calculation often makes it clearer what the meaning of the data is, and it is protected from being corrupted when you fail to update the variable s the source data changes.
+
+```js
+// from
+get discountedTotal() { return this._discountedTotal; }
+set discount(aNumber) {
+    const old = this._discount;
+    this._discount = aNumber;
+    this._discountedTotal += old - aNumber;
+}
+
+// to
+get discountedTotal() { return this._baseTotal - this._discount; }
+set discount(aNumber) { this._discount = aNumber; }
+```
 
 # Tips
 
