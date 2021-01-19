@@ -711,6 +711,37 @@ get discountedTotal() { return this._baseTotal - this._discount; }
 set discount(aNumber) { this._discount = aNumber; }
 ```
 
+## Change Reference to Value
+
+**Motivations** Value objects are generally easier to reason about because they are immutable.
+
+```js
+// from
+class Product {
+    applyDiscount(arg) { this._price.amount -= arg; }
+}
+
+// to
+class Product {
+    applyDiscount(arg) {
+        this._price = new Money(this._price.amount - arg, this._price.currency);
+    }
+}
+```
+
+## Change Value To Reference
+
+**Motivation:** Useful to keep a reference of the object if it is is shared and will be updated frequently.
+
+```js
+// from
+let customer = new Customer(customerData);
+
+// to
+let customer = customerRepository.get(customerData.id);
+
+```
+
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
