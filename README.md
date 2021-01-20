@@ -742,6 +742,45 @@ let customer = customerRepository.get(customerData.id);
 
 ```
 
+# Chapter 10 - Simplifying Conditional Logic
+
+### Decompose Conditional
+
+**Motivation:** Clarify intention by decomposing complicated condition checks with function calls named after the intention.
+
+```js
+// from
+if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd)) {
+    charge = quantity * plan.summerRate;
+} else {
+    charge = quantity * plan.regularRate + plan.regularServiceCharge;
+}
+
+// to
+charge = summer() ? summerCharge() : regularCharge();
+```
+
+## Consolidate Conditional Expression
+
+**Motivation:** Combine conditional checks where each check is different yet the resulting action is the same.
+
+```js
+// from
+if (anEmployee.seniority < 2) return 0;
+if (anEmployee.monthsDisabled > 12) return 0;
+if (anEmployee.isPartTime) return 0;
+
+// to
+if (isNotEligibleForDisability) return 0;
+
+function isNotEligibleForDisability() {
+    return (
+        (anEmployee.seniority < 2) ||
+        (anEmployee.monthsDisabled > 12) ||
+        (anEmployee.isPartTime)
+    );
+}
+```
 # Tips
 
 1. When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easier to add the feature, then add the feature. (page 4)
